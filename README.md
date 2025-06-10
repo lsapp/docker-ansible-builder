@@ -18,4 +18,4 @@ docker run --rm -it \
   ansible-playbook [YOUR_PLAYBOOK].yml
 ```
 
-Sample playbook: [sample](build_and_push.yml)# docker-ansible-builder
+Sample playbook: [sample](build_and_push.yml)
