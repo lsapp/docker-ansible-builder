@@ -74,24 +74,8 @@
 
     - name: Tag the newly built image with 'latest' locally using docker tag command
       ansible.builtin.command:
-        # Use docker tag <SOURCE_IMAGE> <TARGET_IMAGE>
-        # Source image is identified by its full name and the dynamic tag
-        # Target image is the base name with the 'latest' tag
         cmd: "docker tag {{ full_image_base_name }}:{{ image_tag }} {{ full_image_base_name }}:latest"
-      changed_when: true # This command always "changes" the state by creating a new tag
-
-
-    #    - name: Tag the newly built image with 'latest' locally
-#      community.docker.docker_image:
-#        # The new name for the image, including the 'latest' tag
-#        name: "{{ full_image_base_name }}"
-#        tag: "latest"
-#        # Reference the image by its ID, which is the most precise way
-#        # Docker will then create a 'latest' tag pointing to this ID.
-#        repository: "{{ image_dynamic_tag_result.image.RepoDigests[0].split('@')[0] }}" # Extract base image name from RepoDigests
-#        source: local # Indicate we are operating on a local image
-#        state: present
-#      register: latest_tag_result_id
+      changed_when: true
 
     - name: Push the 'latest' tagged image to Registry
       community.docker.docker_image:
